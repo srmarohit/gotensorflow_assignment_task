@@ -5,18 +5,14 @@ const router = require("express").Router();
 
 const userController = require("../controller/user");
 
-router.put("/:id", authorization, userController().updateUser);
+router.get("/exportcsv", userController().exportCSV);
 
-router.post(
-  "/:id/upload",
-  upload.single("profile_pic"),
-  userController().uploadImg
-);
+router.put("/:id", userController().updateUser);
 
-router.delete("/:id", admin, userController().deleteUser);
+router.delete("/:id", userController().deleteUser);
 
-router.get("/:id", authorization, userController().getUser);
+router.get("/:id", userController().getUser);
 
-router.get("/", admin, userController().getAllUsers);
+router.get("/", userController().getAllUsers);
 
 module.exports = router;
